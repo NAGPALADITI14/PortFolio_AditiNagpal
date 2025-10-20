@@ -824,7 +824,7 @@ const App = () => {
                   interesting projects.
                 </p>
                 <a
-                  href="mailto:john.doe@email.com"
+                  href="mailto:nagpaladi05@email.com"
                   className="inline-flex items-center space-x-2 bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
                 >
                   <svg
