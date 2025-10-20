@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import myPhoto from "./assets/images/my-photo.jpg"
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState("summary");
@@ -100,9 +100,9 @@ const App = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
               <div className="flex items-center space-x-8">
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                {/* <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   Portfolio
-                </h1>
+                </h1> */}
                 <div className="hidden md:flex space-x-6">
                   {[
                     "summary",
@@ -171,9 +171,10 @@ const App = () => {
               <div className="animate-fade-in-up">
                 <div className="relative inline-block mb-8">
                   <img
-                    src="https://via.placeholder.com/200x200/4F46E5/FFFFFF?text=Photo"
+                    src={myPhoto}
                     alt="Profile"
-                    className="w-48 h-48 rounded-full mx-auto shadow-2xl ring-8 ring-white dark:ring-gray-800 transition-all duration-500 hover:scale-105"
+                    className="w-48 h-48 rounded-full mx-auto shadow-2xl ring-8 ring-white dark:ring-gray-800"
+                    // className="w-48 h-48 rounded-full mx-auto shadow-2xl ring-8 ring-white dark:ring-gray-800 transition-all duration-500 hover:scale-105"
                   />
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-indigo-600 opacity-20 animate-pulse"></div>
                 </div>
@@ -393,25 +394,6 @@ const App = () => {
                 <div className="space-y-12">
                   {[
                     {
-                      title: "Data Science Intern",
-                      company: "Unified Mentor",
-                      period: "July 2024 - August 2024",
-                      description:
-                        ["Designed predictive models for employee attrition and sales forecasting, achieving 98%+ accuracy using Python, SQL, and exploratory data analysis (EDA), reducing forecast errors by 30%."
-                          ,"Built interactive dashboards to translate insights into strategic retention and budget decisions,improving workforce planning efficiency."
-                    ],
-                          skills: [
-                        "Python",
-                        "Pandas",
-                        "Power BI",
-                        "SQL",
-                        "Machine Learning",
-                        "Tableau",
-                        "Seaborn",
-                        "Matplotlib"
-                      ],
-                    },
-                    {
                       title: "Research and RL Intern",
                       company: "Telecommunications Laboratory, UIET, ",
                       period: "June 2024 - July 2024",
@@ -430,6 +412,26 @@ const App = () => {
                         "Matplotlib",
                       ],
                     },
+                    {
+                      title: "Data Science Intern",
+                      company: "Unified Mentor",
+                      period: "July 2024 - August 2024",
+                      description:
+                        ["Designed predictive models for employee attrition and sales forecasting, achieving 98%+ accuracy using Python, SQL, and exploratory data analysis (EDA), reducing forecast errors by 30%."
+                          ,"Built interactive dashboards to translate insights into strategic retention and budget decisions,improving workforce planning efficiency."
+                    ],
+                          skills: [
+                        "Python",
+                        "Pandas",
+                        "Power BI",
+                        "SQL",
+                        "Machine Learning",
+                        "Tableau",
+                        "Seaborn",
+                        "Matplotlib"
+                      ],
+                    },
+                    
                   ].map((exp, index) => (
                     <div
                       key={index}
@@ -495,8 +497,7 @@ const App = () => {
                     title: "Personal Content Analyzer",
                     description:
                       "Data analytics platform that preprocesses Google Takeout data to deliver insights on YouTube and Chrome activity using NLP-based content classification and semantic clustering. Introduced an “Intellectual Nutrition Scoring” system to quantify the educational value of digital consumption.",
-                    image:
-                      "https://via.placeholder.com/400x250/4F46E5/FFFFFF?text=Content+Analyzer",
+        
                     tech: ["Python", "Streamlit", "NLP", "Machine Learning","Scikit-Learn"],
                     github: "https://github.com/NAGPALADITI14/PersonalContentAnalyser",
                     demo: "https://personalcontentanalyser-app.streamlit.app/",
@@ -505,8 +506,7 @@ const App = () => {
                     title: "Resume Tracking System",
                     description:
                       "ATS-compatible resume analyzer with keyword optimization, skill matching, and job compatibility scoring using advanced algorithms.",
-                    image:
-                      "https://via.placeholder.com/400x250/059669/FFFFFF?text=ATS+System",
+                  
                     tech: ["React.js", "Node.js", "MongoDB", "PDF Processing"],
                     github: "#",
                     demo: "#",
@@ -515,8 +515,7 @@ const App = () => {
                     title: "Trash Tracker",
                     description:
                       "A MERN stack platform that allows citizens to report waste management issues across more than 50 zones. It includes a 24/7 chatbot and automated alerts to keep users informed and help reduce delays in resolving the reported issues.",
-                    image:
-                      "https://via.placeholder.com/400x250/DC2626/FFFFFF?text=Trash+Tracker",
+                   
                     tech: ["React.js", "Express.js", "Node.js","MongoDB","GPS Tracking","Rest APIs", "Google Maps API"],
                     github: "https://github.com/NAGPALADITI14/TrashTrackerFrontend",
                     demo: "https://trashtrackerfrontend.onrender.com/",
@@ -525,8 +524,6 @@ const App = () => {
                     title: "Student's Point",
                     description:
                       "A full-stack e-commerce application that provides scalable product and category management with secure JWT-based authentication for controlled user access. It includes a real-time cart system that supports over 50 product variations, allowing smooth checkout and consistent performance.",
-                    image:
-                      "https://via.placeholder.com/400x250/7C3AED/FFFFFF?text=Medical+AI",
                     tech: ["Next.js", "Typescript", "Tailwind CSS", "MongoDB","JWT"],
                     github: "https://github.com/NAGPALADITI14/Ecommerce_Stationary_Store",
                     demo: "https://studentspoint.vercel.app/",
@@ -537,11 +534,6 @@ const App = () => {
                     className="group bg-white dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2"
                   >
                     <div className="relative overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
 
