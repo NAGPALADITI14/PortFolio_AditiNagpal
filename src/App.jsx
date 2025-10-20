@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import myPhoto from "./assets/images/my-photo.jpg"
+
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState("summary");
@@ -161,22 +161,16 @@ const App = () => {
         </nav>
 
         <div className="pt-16">
-          {/* Hero Section / General Summary */}
+      
           <section
             id="summary"
             className="min-h-screen flex items-center justify-center px-4 py-20"
           >
             <div className="max-w-6xl mx-auto text-center">
-              {/* Used custom CSS class for animation */}
+           
               <div className="animate-fade-in-up">
                 <div className="relative inline-block mb-8">
-                  <img
-                    src={myPhoto}
-                    alt="Profile"
-                    className="w-48 h-48 rounded-full mx-auto shadow-2xl ring-8 ring-white dark:ring-gray-800"
-                    // className="w-48 h-48 rounded-full mx-auto shadow-2xl ring-8 ring-white dark:ring-gray-800 transition-all duration-500 hover:scale-105"
-                  />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-indigo-600 opacity-20 animate-pulse"></div>
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-indigo-600 opacity-20 animate-pulse"></div> 
                 </div>
 
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-gradient">
@@ -210,8 +204,8 @@ const App = () => {
                     Get In Touch
                   </button>
                 </div>
-              </div>
-            </div>
+               </div>
+            </div> 
           </section>
 
           {/* Key Expertise */}
