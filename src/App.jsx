@@ -135,6 +135,17 @@ const customStyles = `
     font-size: 1rem; line-height: 1.8; color: var(--text-secondary);
   }
   .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .hero-links { display: flex; gap: 1.25rem; justify-content: center; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .hero-link {
+    font-size: 0.9rem; font-weight: 600; color: var(--accent);
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+  }
+  .hero-link:hover { text-decoration: underline; }
+
+  .hl {
+    color: var(--accent);
+    font-weight: 700;
+  }
 
   .btn-primary {
     padding: 0.8rem 2rem;
@@ -220,6 +231,7 @@ const customStyles = `
   .exp-bullets li { margin-bottom: 0.5rem; }
 
   /* Projects */
+  .proj-period { color: var(--text-muted); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.5rem; }
   .proj-desc { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1rem; }
   .proj-links { display: flex; gap: 1rem; margin-top: 1rem; }
   .proj-link {
@@ -280,6 +292,14 @@ const customStyles = `
 `;
 
 const SECTIONS = ["summary", "expertise", "education", "experience", "projects", "achievements", "certifications", "contact"];
+
+// Highlights standout numbers/metrics and key tech keywords so they pop out visually.
+const HL_PATTERN = /(\d[\d,]*\+?%?|AWS|Terraform|GitLab CI\/CD|CI\/CD|Docker|Kubernetes|EKS|ECR|IAM|RDS(?!\w)|S3(?!\w)|React\.js|Angular|Node\.js|Express\.js|Spring Boot|PostgreSQL|MongoDB|LSTM|DDPG|NLP|REST APIs?|JWT|Streamlit|Scikit-learn|Hierarchical DDPG|Terraform|entity-relationship architecture|semantic clustering|Intellectual Nutrition Scoring)/g;
+
+const highlight = (text) => {
+  const parts = text.split(HL_PATTERN);
+  return parts.map((part, i) => (i % 2 === 1 ? <span key={i} className="hl">{part}</span> : part));
+};
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -347,12 +367,11 @@ const App = () => {
           <div className="section-inner" style={{ textAlign: "center" }}>
             <div className="fade-up">
               <span className="gradient-name">Aditi Nagpal</span>
-              <p className="hero-sub">SDE Intern · AI Developer</p>
+              <p className="hero-sub">Associate Software Developer · AI &amp; Cloud Enthusiast</p>
               <p className="hero-bio">
-                Software Engineer with hands-on experience in full-stack development and AI-driven applications.
-                Skilled in building REST API-based backend systems using Java Spring Boot, Node.js, React and cloud technologies.
-                Experienced in integrating AI to automate workflows and improve development productivity.
-                Strong foundation in data structures, algorithms, and system design.
+                {highlight(
+                  "Software Engineer with hands-on experience in full-stack development, AI-driven applications and cloud infrastructure/DevOps. Skilled in building REST API-based backend systems using Java Spring Boot, Node.js and React, and in provisioning and automating AWS cloud infrastructure using Terraform and GitLab CI/CD. Strong foundation in data structures, algorithms, and system design, with the ability to build and deploy scalable software solutions end-to-end."
+                )}
               </p>
               <div className="hero-btns">
                 <button className="btn-primary" onClick={() => scrollToSection("projects")}>View My Work</button>
@@ -362,18 +381,17 @@ const App = () => {
           </div>
         </section>
 
-        {/* Expertise */}
+        {/* Expertise / Technical Skills */}
         <section id="expertise" className="page-section alt">
           <div className="section-inner">
-            <h2>Key Expertise</h2>
+            <h2>Technical Skills</h2>
             <div className="grid3">
               {[
-                { title: "🚀 Full Stack Development", skills: ["Angular.js","React.js","Node.js","MongoDB","Express.js","PostgreSQL","Next.js","TailwindCSS","HTML5","CSS3","Vanilla JS"] },
-                { title: "🤖 Machine Learning", skills: ["Python","TensorFlow","PyTorch","Scikit-learn","Reinforcement Learning"] },
-                { title: "📊 Data Science", skills: ["SQL","Power BI","Pandas","NumPy","Matplotlib"] },
-                { title: "💻 Programming Languages", skills: ["C/C++","Python","JavaScript","Java","MATLAB"] },
-                { title: "☁️ Cloud & DevOps", skills: ["AWS","Git","Docker","Linux","Vercel"] },
-                { title: "🗄️ Database Management", skills: ["MySQL","MongoDB","PostgreSQL","Redis"] },
+                { title: "💻 Languages", skills: ["Java","C/C++","Python","JavaScript","SQL"] },
+                { title: "🧩 Frameworks & Libraries", skills: ["Angular","React.js","Node.js","Express.js","Spring Boot","Tailwind CSS"] },
+                { title: "☁️ Cloud & DevOps (AWS)", skills: ["EKS","ECR","RDS","S3","IAM","Terraform","GitLab CI/CD","Docker","Kubernetes"] },
+                { title: "🤖 Tools & AI", skills: ["Git","Power BI","Linux","Machine Learning","Reinforcement Learning","NLP"] },
+                { title: "🗄️ Databases & Core Skills", skills: ["MongoDB","PostgreSQL","Data Structures","Algorithms","OOP","System Design"] },
               ].map((item, i) => (
                 <div key={i} className="card card-pad">
                   <div className="card-title">{item.title}</div>
@@ -392,7 +410,7 @@ const App = () => {
             <h2>Education</h2>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
               {[
-                { degree: "BE in Computer Science and Engineering", institution: "University Institute of Engineering and Technology, Panjab University, Chandigarh", year: "2022 – 2026", grade: "CGPA: 8.65 / 10", desc: "Specializing in Software Engineering, Data Structures, and Machine Learning" },
+                { degree: "BE in Computer Science and Engineering", institution: "University Institute of Engineering and Technology, Panjab University, Chandigarh", year: "11/2022 – 05/2026", grade: "CGPA: 8.65 / 10", desc: "Specializing in Software Engineering, Data Structures, and Machine Learning" },
                 { degree: "Senior Secondary (12th Grade)", institution: "Panacea Senior Secondary Public School (CBSE), Jalalabad(W)", year: "2022", grade: "94.8%", desc: "Physics, Chemistry, Mathematics" },
                 { degree: "Secondary (10th Grade)", institution: "Sacred Heart Convent School (ICSE), Jalalabad(W)", year: "2020", grade: "95%", desc: "Comprehensive secondary education with focus on STEM subjects" },
               ].map((edu, i) => (
@@ -417,28 +435,22 @@ const App = () => {
             <div className="timeline">
               {[
                 {
-                  title: "SWE Intern", company: "Cotiviti India Pvt Ltd", period: "January 2026 – June 2026",
+                  title: "Associate Software Developer", company: "Cotiviti India Private Ltd · Mohali, India", period: "January 2026 – Present",
                   bullets: [
-                    "Engineered a scalable fullstack application using Java Spring Boot and Angular, implementing Keycloak authentication and REST APIs supporting 100+ concurrent users.",
-                    "Containerized application with Docker, reducing deployment time by 70%; deepening DevOps expertise with CI/CD pipelines and orchestration tools.",
+                    "Engineered a full-stack application using Java Spring Boot, Angular, and PostgreSQL, designing 20+ REST APIs with complex entity-relationship architecture.",
+                    "Provisioned and managed 20+ AWS resources using Terraform, reducing infrastructure provisioning time by 80% and ensuring reproducible, version-controlled deployments across environments.",
+                    "Built and optimized GitLab CI/CD pipelines for automated build, testing, containerization, and deployment, reducing manual intervention by 90% and accelerating release cycles.",
+                    "Automated deployment workflows using Docker, ECR and EKS, reducing release time by 70%, while contributing 15+ production features, enhancements, and critical bug fixes to applications used by hundreds of end users.",
                   ],
-                  skills: ["Java","Spring Boot","Angular","PostgreSQL","Docker","Kubernetes"],
+                  skills: ["Java","Spring Boot","Angular","PostgreSQL","Terraform","GitLab CI/CD","Docker","EKS","ECR"],
                 },
                 {
-                  title: "Research & RL Intern", company: "Telecommunications Laboratory, UIET, Chandigarh", period: "June 2024 – July 2024",
+                  title: "Research Intern", company: "Telecommunications Laboratory, UIET · Chandigarh, India", period: "June 2024 – July 2024",
                   bullets: [
                     "Researched computational offloading optimization in multi-UAV MEC systems using Hierarchical DDPG with LSTM networks.",
                     "Conducted 500+ DRL training simulations incorporating UAV mobility and battery constraints, reducing task latency and improving system reliability.",
                   ],
                   skills: ["Reinforcement Learning","Python","TensorFlow","LSTM","Mobile Edge Computing"],
-                },
-                {
-                  title: "Data Science Intern", company: "Unified Mentor", period: "July 2024 – August 2024",
-                  bullets: [
-                    "Designed predictive models for employee attrition and sales forecasting, achieving 98%+ accuracy using Python, SQL, and EDA, reducing forecast errors by 30%.",
-                    "Built interactive dashboards to translate insights into strategic retention and budget decisions, improving workforce planning efficiency.",
-                  ],
-                  skills: ["Python","Pandas","Power BI","SQL","Machine Learning","Seaborn","Matplotlib"],
                 },
               ].map((exp, i) => (
                 <div key={i} className="timeline-item">
@@ -449,7 +461,7 @@ const App = () => {
                       <p className="exp-company">{exp.company}</p>
                       <p className="exp-period">{exp.period}</p>
                       <ul className="exp-bullets">
-                        {exp.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                        {exp.bullets.map((b, j) => <li key={j}>{highlight(b)}</li>)}
                       </ul>
                       <div className="pills">
                         {exp.skills.map((s, j) => <span key={j} className="pill2">{s}</span>)}
@@ -468,14 +480,35 @@ const App = () => {
             <h2>Featured Projects</h2>
             <div className="grid2">
               {[
-                { title: "Personal Content Analyzer", desc: "Data analytics platform that preprocesses Google Takeout data to deliver insights on YouTube and Chrome activity using NLP-based content classification. Features an 'Intellectual Nutrition Scoring' system to quantify educational value of digital consumption.", tech: ["Python","Streamlit","NLP","Scikit-Learn"], github: "https://github.com/NAGPALADITI14/PersonalContentAnalyser", demo: "https://personalcontentanalyser-app.streamlit.app/" },
-                { title: "Resume Tracking System", desc: "ATS-compatible resume analyzer with keyword optimization, skill matching, and job compatibility scoring using advanced algorithms.", tech: ["React.js","Node.js","MongoDB","PDF Processing"], github: "#", demo: "#" },
-                { title: "Trash Tracker", desc: "MERN stack platform allowing citizens to report waste management issues across 50+ zones. Includes a 24/7 chatbot and automated alerts to reduce resolution delays.", tech: ["React.js","Express.js","Node.js","MongoDB","Google Maps API"], github: "https://github.com/NAGPALADITI14/TrashTrackerFrontend", demo: "https://trashtrackerfrontend.onrender.com/" },
-                { title: "Student's Point", desc: "Full-stack e-commerce application with scalable product management, secure JWT-based authentication, and a real-time cart supporting 50+ product variations with smooth checkout.", tech: ["Next.js","TypeScript","Tailwind CSS","MongoDB","JWT"], github: "https://github.com/NAGPALADITI14/Ecommerce_Stationary_Store", demo: "https://studentspoint.vercel.app/" },
+                {
+                  title: "Trash Tracker", period: "September 2024 – November 2024",
+                  desc: "MERN stack platform allowing citizens to report waste management issues across 50+ zones. Enhanced user support by integrating a 24/7 chatbot and automated alerts, improving citizen engagement and reducing resolution delays.",
+                  tech: ["Node.js","React.js","Express.js","MongoDB","GPS Tracking","REST APIs"],
+                  github: "https://github.com/NAGPALADITI14/TrashTrackerFrontend", demo: "https://trashtrackerfrontend.onrender.com/",
+                },
+                {
+                  title: "Personal Content Analyzer", period: "December 2023 – February 2024",
+                  desc: "Platform that preprocesses Google Takeout data to deliver detailed insights on YouTube and Chrome user activity across daily, weekly, and monthly intervals. Processed 10,000+ daily interactions with 98% content classification accuracy and built a dashboard featuring semantic clustering and an 'Intellectual Nutrition Scoring' system.",
+                  tech: ["NLTK","Scikit-learn","Python","Streamlit","Machine Learning"],
+                  github: "https://github.com/NAGPALADITI14/PersonalContentAnalyser", demo: "https://personalcontentanalyser-app.streamlit.app/",
+                },
+                {
+                  title: "Resume Tracking System", period: "",
+                  desc: "ATS-compatible resume analyzer with keyword optimization, skill matching, and job compatibility scoring using advanced algorithms.",
+                  tech: ["React.js","Node.js","MongoDB","PDF Processing"],
+                  github: "#", demo: "#",
+                },
+                {
+                  title: "Student's Point", period: "",
+                  desc: "Full-stack e-commerce application with scalable product management, secure JWT-based authentication, and a real-time cart supporting 50+ product variations with smooth checkout.",
+                  tech: ["Next.js","TypeScript","Tailwind CSS","MongoDB","JWT"],
+                  github: "https://github.com/NAGPALADITI14/Ecommerce_Stationary_Store", demo: "https://studentspoint.vercel.app/",
+                },
               ].map((proj, i) => (
                 <div key={i} className="card card-pad">
                   <div className="card-title">{proj.title}</div>
-                  <p className="proj-desc">{proj.desc}</p>
+                  {proj.period && <div className="proj-period">{proj.period}</div>}
+                  <p className="proj-desc">{highlight(proj.desc)}</p>
                   <div className="pills">
                     {proj.tech.map((t, j) => <span key={j} className="pill">{t}</span>)}
                   </div>
@@ -502,14 +535,14 @@ const App = () => {
             <div className="grid3">
               {[
                 { icon: "🏆", title: "National Semi Finalist — Flipkart Grid 7.0", desc: "Ranked among the top 10% of 1,60,000 participants who advanced to the further rounds." },
-                { icon: "🏆", title: "SHEFI Cohort 14 — Global Women in Tech", desc: "Awarded a 100% scholarship and lifetime membership in a prestigious women-led community focused on cryptocurrency education." },
-                { icon: "🎯", title: "CHASCON 2024 Presenter", desc: "Presented a poster on UAV-based MEC offloading and delivered an oral presentation on citizen-powered cleanliness reporting at the National Conference." },
-                { icon: "💻", title: "500+ LeetCode Problems", desc: "Solved extensive algorithmic challenges to strengthen problem-solving skills." },
+                { icon: "🌐", title: "SheFi Cohort 14 — Global Women in Tech", desc: "Selected for SheFi Cohort 14, a Global Women in Tech initiative, with a 100% merit scholarship." },
+                { icon: "🎙️", title: "Active Debater — UIET MUN 7.0 & DEBSOC", desc: "Delegate at UIET MUN 7.0 and active member of DEBSOC, the Debating Society of UIET." },
+                { icon: "💻", title: "500+ Coding Problems Solved", desc: "Solved 500+ problems across top coding platforms, demonstrating strong logical and algorithmic problem-solving skills." },
               ].map((a, i) => (
                 <div key={i} className="card card-pad">
                   <div className="achieve-icon">{a.icon}</div>
                   <div className="card-title">{a.title}</div>
-                  <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem", lineHeight: 1.6 }}>{a.desc}</p>
+                  <p style={{ color: "var(--text-secondary)", fontSize: "0.875rem", lineHeight: 1.6 }}>{highlight(a.desc)}</p>
                 </div>
               ))}
             </div>
@@ -586,5 +619,3 @@ const App = () => {
 };
 
 export default App;
-
-
